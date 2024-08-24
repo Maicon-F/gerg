@@ -4,8 +4,6 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.List;
-
 @Getter
 @Setter
 @Entity
@@ -24,8 +22,8 @@ public class ReducedMixVariables {
     private double gammaTij;
 
     @ManyToOne
-    @JoinColumn(name="binary_id")
-    private Binary binary;
+    @JoinColumn(name="FK_BINARY")
+    private BiCombination biCombination;
 
     public void ReducedMixVariables() {
     //create calculation

@@ -33,4 +33,12 @@ public class Component {
     @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
     @JoinColumn(name="FK_COMPONENT")
     private List<Alpha_res_oi> aRes;
+
+    @ManyToMany
+    @JoinTable(
+            name = "component-bi",
+            joinColumns = @JoinColumn(name = "bi_id"),
+            inverseJoinColumns = @JoinColumn(name = "component_id")
+    )
+    private List<BiCombination> binaries;
 }

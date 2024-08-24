@@ -13,7 +13,7 @@ public class controller {
     private double rho;
     private double temperature;
 
-
+/*
     private double getNoik(Component c, int k){
         double noik = c.getAIdeal().stream().filter(i -> i.getK() == 1).collect(Collectors.toList()).getFirst().getN_oik();
         return noik;
@@ -25,6 +25,9 @@ public class controller {
         double a = Math.log(rho/c.getRho_ci()) + (Rstar/R)*(getNoik(c,1));
         return a;
     }
+
+
+ */
     //reducedVars
 
     //residual pure

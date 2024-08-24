@@ -2,6 +2,7 @@ package com.gerg2008.app.model;
 
 import jakarta.persistence.*;
 
+@Entity
 public class Alpha_res_ij {
 
     @Id
@@ -15,7 +16,5 @@ public class Alpha_res_ij {
     private double beta_ijk;
     private double gama_ijk;
 
-    @ManyToOne
-    @JoinColumn(name="binary_id")
-    private Binary binary;
+
 }
