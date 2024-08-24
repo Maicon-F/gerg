@@ -41,4 +41,15 @@ public class Component {
             inverseJoinColumns = @JoinColumn(name = "component_id")
     )
     private List<BiCombination> binaries;
+
+
+    public BiCombination getBinaryCombination(Component c2){
+        for(BiCombination b: binaries){
+            for(BiCombination b2: c2.getBinaries()){
+                if(b.equals(b2))
+                    return b;
+            }
+        }
+        return null; //TODO: implement try/catch because not always we will find a combination btw two parameters
+    }
 }

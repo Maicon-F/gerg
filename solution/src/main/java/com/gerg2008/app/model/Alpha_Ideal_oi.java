@@ -17,6 +17,7 @@ public class Alpha_Ideal_oi {
     private String name;
     private long k;
     private Double n_oik;
+    private Double teta_oik;
 
 
 }

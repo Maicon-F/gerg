@@ -21,9 +21,7 @@ public class ReducedMixVariables {
     private double betaTij;
     private double gammaTij;
 
-    @ManyToOne
-    @JoinColumn(name="FK_BINARY")
-    private BiCombination biCombination;
+
 
     public void ReducedMixVariables() {
     //create calculation
