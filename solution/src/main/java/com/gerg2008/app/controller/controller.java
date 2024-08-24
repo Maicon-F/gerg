@@ -50,6 +50,19 @@ public class controller {
         return tetaoik;
     }
 
+    private double getDoik(Component c, int k){
+        double doik = c.getARes().stream().filter(i -> i.getK() == 1).collect(Collectors.toList()).getFirst().getD_oik();
+        return doik;
+    }
+
+    private double getToik(Component c, int k){
+        double toik = c.getARes().stream().filter(i -> i.getK() == 1).collect(Collectors.toList()).getFirst().getT_oik();
+        return toik;
+    }
+    private double getCoik(Component c, int k){
+        double coik = c.getARes().stream().filter(i -> i.getK() == 1).collect(Collectors.toList()).getFirst().getC_oik();
+        return coik;
+    }
 
     //reducedVars
     public void calculateReducedVariables(List<Component> list){
@@ -65,8 +78,8 @@ public class controller {
             tRes1 = (Math.pow(c.getComposition(),2))*c.getT_ci() + tRes1;
         }
 
-        for(int i=0; i <= N-1; i++){
-            for(int j=0; j <= N; j++){
+        for(int i=1; i <= N-1; i++){
+            for(int j=i+1; j <= N; j++){
                 ci = list.get(i);
                 cj = list.get(j);
                 rhoci = ci.getRho_ci();
@@ -90,12 +103,57 @@ public class controller {
 
         this.redRho = rhoRes1 + rhoRes2;
         this.redTemperature = tRes1 + tRes2;
-
     }
 
 
 
+
     //residual pure
+
+    public double calculateAlphaoRes(Component c){
+     int kPOL = calculateKexp(c)[0];
+     int kEXP = calculateKexp(c)[1];
+    double sum1 = 0.0, sum2 = 0.0;
+
+    for(int i=1; i <= kPOL; i++){
+        sum1 = getNoik(c, i)*Math.pow(redRho, getDoik(c,i))*Math.pow(redTemperature,getToik(c,i)) + sum1;
+    }
+
+
+    for(int j=kPOL+1; j <= kPOL + kEXP; j++){
+            sum2 = getNoik(c, j)*Math.pow(redRho, getDoik(c,j))*Math.pow(redTemperature,getToik(c,j))*Math.exp(-Math.pow(redRho,getCoik(c,j))) + sum2;
+        }
+
+    return sum1 + sum2;
+
+
+    }
+
+
+    public int[] calculateKexp(Component c){
+        int kPOL = 6;
+        int kEXP = 18;
+        int k = c.getARes().getLast().getK();
+
+        switch(k){
+            case 12:
+                kEXP = 6;
+                break;
+            case 22:
+                kEXP = 18;
+                kPOL = 4;
+                break;
+            case 24:
+                kEXP = 18;
+                kPOL = 6;
+                break;
+        }
+
+
+       return new int[]{kPOL, kEXP};
+
+
+    }
 
     //residual binary
 
