@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -28,11 +29,11 @@ public class Component {
 
     @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
     @JoinColumn(name="FK_COMPONENT")
-    private List<Alpha_Ideal_oi> aIdeal;
+    private ArrayList<Alpha_Ideal_oi> aIdeal;
 
     @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
     @JoinColumn(name="FK_COMPONENT")
-    private List<Alpha_res_oi> aRes;
+    private ArrayList<Alpha_res_oi> aRes;
 
     @ManyToMany
     @JoinTable(
@@ -40,7 +41,7 @@ public class Component {
             joinColumns = @JoinColumn(name = "bi_id"),
             inverseJoinColumns = @JoinColumn(name = "component_id")
     )
-    private List<BiCombination> binaries;
+    private ArrayList<BiCombination> binaries;
 
 
     public BiCombination getBinaryCombination(Component c2){

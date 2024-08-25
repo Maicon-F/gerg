@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -21,8 +22,7 @@ public class BiCombination {
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name="FK_BICOMBINATION")
-    private List<Alpha_res_ij> alphaRes_ij;
-
+    private ArrayList<Alpha_res_ij> alphaRes_ij;
 
     @ManyToOne
     @JoinColumn(name="FK_BICOMBINATION")
