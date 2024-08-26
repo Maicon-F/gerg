@@ -22,7 +22,7 @@ public class Component {
     private String formula;
 
     @Transient
-    private double composition;
+    private double composition = 1.0;
     private double rho_ci;
     private double t_ci;
     private double mm;

@@ -42,12 +42,31 @@ class AppApplicationTests {
 	public void TestAlphaResCO2() throws Exception {
 		ComponentFactory factory = new ComponentFactory();
 		Component co2 =factory.createCO2();
+		co2.setComposition(1);
+
 		List<Component> list = new ArrayList<>();
 		list.add(co2);
 
 		calculator = new HelmholtzCalculator(66.824581, 300, list);
 
 		double a = calculator.calculateAlphaResoi(co2);
+		System.out.println(Math.abs(a));
+		assertTrue(Math.abs(a) - 0.520 < 0.1);
+	}
+
+	@Test
+	public void TestAlphaRealCO2() throws Exception {
+		ComponentFactory factory = new ComponentFactory();
+		Component co2 =factory.createCO2();
+		co2.setComposition(1);
+
+		List<Component> list = new ArrayList<>();
+		list.add(co2);
+
+		calculator = new HelmholtzCalculator(66.824581, 300, list);
+
+		double a = calculator.aReal();
+		System.out.println(Math.abs(a));
 		assertTrue(Math.abs(a) - 0.520 < 0.1);
 	}
 
