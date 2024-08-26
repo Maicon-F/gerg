@@ -16,7 +16,7 @@ public class BiCombination {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String name;
-    private double f_ij;
+    private double f_ij = 0;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name="FK_BICOMBINATION")

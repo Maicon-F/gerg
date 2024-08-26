@@ -46,7 +46,6 @@ class AppApplicationTests {
 
 		calculator = new HelmholtzCalculator(66.824581, 300, list);
 		double a = calculator.calculateAlphaIdeal_oi(pentane);
-		System.out.println("a ideal: " + a);
 		assertTrue(Math.abs(a) - 4.61 < 0.1);
 
 	}
@@ -63,7 +62,6 @@ class AppApplicationTests {
 
 		calculator = new HelmholtzCalculator(66.824581, 300, list);
 		double a = calculator.calculateAlphaResoi(p);
-		System.out.println("Res pentane: " + Math.abs(a));
 		assertTrue(Math.abs(a) - 0.77 < 0.1);
 	}
 
@@ -82,7 +80,7 @@ class AppApplicationTests {
 	}
 
 	@Test
-	public void TestAlphaRealCO2() throws Exception {
+	public void estAlphaRealCO2() throws Exception {
 		ComponentFactory factory = new ComponentFactory();
 		Component co2 =factory.createCO2();
 		co2.setComposition(1);
@@ -93,8 +91,19 @@ class AppApplicationTests {
 		calculator = new HelmholtzCalculator(66.824581, 300, list);
 
 		double a = calculator.aReal();
-		System.out.println(Math.abs(a));
 		assertTrue(Math.abs(a) - 0.520 < 0.1);
+	}
+
+
+	@Test
+	public void testMixtureCO2Pentane() throws Exception {
+		ComponentFactory factory = new ComponentFactory();
+		List<Component> list = factory.createCO2PentaneEquiMixture();
+
+		calculator = new HelmholtzCalculator(66.824581, 300, list);
+
+		double a = calculator.aReal();
+		assertTrue(Math.abs(a) - 3.28< 0.1);
 	}
 
 }

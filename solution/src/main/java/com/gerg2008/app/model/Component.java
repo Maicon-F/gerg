@@ -41,7 +41,7 @@ public class Component {
             joinColumns = @JoinColumn(name = "bi_id"),
             inverseJoinColumns = @JoinColumn(name = "component_id")
     )
-    private ArrayList<BiCombination> binaries;
+    private List<BiCombination> binaries;
 
 
     public BiCombination getBinaryCombination(Component c2){

@@ -146,8 +146,8 @@ public class HelmholtzCalculator {
             tRes1 = (Math.pow(xi,2))*tci + tRes1;
         }
 
-        for(int i=1; i <= N-1; i++){
-            for(int j=i+1; j <= N; j++){
+        for(int i=0; i < N-1; i++){
+            for(int j=i+1; j < N; j++){
                 ci = list.get(i);
                 cj = list.get(j);
                 rhoci = ci.getRho_ci();
@@ -163,8 +163,8 @@ public class HelmholtzCalculator {
                 gamaV = pars.getGammaVij();
                 gamaT = pars.getGammaTij();
 
-                rhoRes2 = 2*xi*xj*betaV*gamaV*((xi+xj)/(Math.pow(betaV,2)*xi + xj))*(1/8)*Math.pow((1/Math.pow(rhoci,1/3) + 1/Math.pow(rhocj,1/3)),3) + rhoRes2;
-                tRes2 = 2*xi*xj*betaV*gamaT*((xi+xj)/(Math.pow(betaT,2)*xi + xj))*(Math.pow(tci*tcj,0.5)) + tRes2;
+                rhoRes2 = 2*xi*xj*betaV*gamaV*((xi+xj)/(Math.pow(betaV,2)*xi + xj))*((double) 1 /8)*Math.pow((1/Math.pow(rhoci, (double) 1 /3) + 1/Math.pow(rhocj, (double) 1 /3)),3) + rhoRes2;
+                tRes2 = 2*xi*xj*betaT*gamaT*((xi+xj)/(Math.pow(betaT,2)*xi + xj))*(Math.pow(tci*tcj,0.5)) + tRes2;
             }
         }
         this.redRho = rho*(rhoRes1 + rhoRes2);
@@ -215,12 +215,15 @@ public class HelmholtzCalculator {
 
     //residual binary
     public double calculateAlphaoResij(Component c1, Component c2) throws Exception {
+        BiCombination bi = c1.getBinaryCombination(c2);
+
+        if(bi.getAlphaRes_ij() == null)
+            return 0.0;
+
         int kPOL = calculateKexp(c1)[0];
         int kEXP = calculateKexp(c1)[1];
         double sum1 = 0.0, sum2 = 0.0;
         double exp;
-
-        BiCombination bi = c1.getBinaryCombination(c2);
 
         for(int i=1; i <= kPOL; i++){
             sum1 = getNijk(bi, i)*Math.pow(redRho, getDijk(bi,i))*Math.pow(redTemperature,getTijk(bi,i)) + sum1;
@@ -273,10 +276,6 @@ public class HelmholtzCalculator {
     }
 
     public double aReal() throws Exception {
-        double ideal = mixAIdeal();
-        double res = mixResidual();
-        System.out.println("IDEAL = " + ideal);
-        System.out.println("RES = " + res);
         return mixAIdeal() + mixResidual();
     }
 
