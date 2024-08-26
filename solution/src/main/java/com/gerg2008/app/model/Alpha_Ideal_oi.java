@@ -15,7 +15,7 @@ public class Alpha_Ideal_oi {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String name;
-    private long k;
+    private int k;
     private Double n_oik;
     private Double teta_oik;
 

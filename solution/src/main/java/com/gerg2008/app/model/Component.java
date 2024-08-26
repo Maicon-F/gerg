@@ -29,11 +29,11 @@ public class Component {
 
     @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
     @JoinColumn(name="FK_COMPONENT")
-    private ArrayList<Alpha_Ideal_oi> aIdeal;
+    private List<Alpha_Ideal_oi> aIdeal;
 
     @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
     @JoinColumn(name="FK_COMPONENT")
-    private ArrayList<Alpha_res_oi> aRes;
+    private List<Alpha_res_oi> aRes;
 
     @ManyToMany
     @JoinTable(
