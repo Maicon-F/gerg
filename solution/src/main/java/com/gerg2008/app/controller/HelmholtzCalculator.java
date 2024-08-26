@@ -52,8 +52,6 @@ public class HelmholtzCalculator {
             nplus = getNoik(c, k+1);
 
             //TODO: check whether I should have ignored
-            if(teta==0)
-                continue;
 
             sinh = Math.abs(Math.sinh(teta*t));
             cosh = Math.abs(Math.cosh(tetaplus*t));

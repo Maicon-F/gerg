@@ -24,6 +24,20 @@ public class ComponentFactory {
      return c;
     }
 
+    public Component createPentane(){
+        Component c = new Component();
+        c.setName("Pentane");
+        c.setFormula("n-C5H12");
+        c.setMm(72.14878*0.001);
+        c.setRho_ci(3.215577588*1000);
+        c.setT_ci(469.7);
+
+        ComponentBuilder builder = new ComponentBuilder(c);
+        builder.withAlphaIdealoi(aIdealPentane()).withAlphaResoi(aresPentane());
+
+        return c;
+    }
+
 
  private List<Alpha_Ideal_oi> aIdealCO2(){
      Alpha_Ideal_oi a1 = new Alpha_Ideal_oi();
@@ -264,6 +278,168 @@ public class ComponentFactory {
 
      return list;
  }
+
+
+    private List<Alpha_Ideal_oi> aIdealPentane(){
+        Alpha_Ideal_oi a1 = new Alpha_Ideal_oi();
+        Alpha_Ideal_oi a2 = new Alpha_Ideal_oi();
+        Alpha_Ideal_oi a3 = new Alpha_Ideal_oi();
+        Alpha_Ideal_oi a4 = new Alpha_Ideal_oi();
+        Alpha_Ideal_oi a5 = new Alpha_Ideal_oi();
+        Alpha_Ideal_oi a6 = new Alpha_Ideal_oi();
+        Alpha_Ideal_oi a7 = new Alpha_Ideal_oi();
+
+        a1.setK(1);
+        a1.setName("Pentane");
+        a1.setN_oik(14.536611217);
+        a1.setTeta_oik(0.0);
+
+        a2.setK(2);
+        a2.setName("Pentane");
+        a2.setN_oik(-89.919548319);
+        a2.setTeta_oik(0.0);
+
+        a3.setK(3);
+        a3.setName("Pentane");
+        a3.setN_oik(3.00000);
+        a3.setTeta_oik(0.0);
+
+        a4.setK(4);
+        a4.setName("Pentane");
+        a4.setN_oik(8.95043);
+        a4.setTeta_oik(0.380391739);
+
+        a5.setK(5);
+        a5.setName("Pentane");
+        a5.setN_oik(21.83600);
+        a5.setTeta_oik(1.789520971);
+
+        a6.setK(6);
+        a6.setName("Pentane");
+        a6.setN_oik(33.40320);
+        a6.setTeta_oik(3.777411113);
+
+        a7.setK(7);
+        a7.setName("Pentane");
+        a7.setN_oik(0.0);
+        a7.setTeta_oik(0.0);
+
+        ArrayList<Alpha_Ideal_oi> list = new ArrayList<>();
+        list.add(a1);
+        list.add(a2);
+        list.add(a3);
+        list.add(a4);
+        list.add(a5);
+        list.add(a6);
+        list.add(a7);
+
+        return list;
+    }
+
+
+    private List<Alpha_res_oi> aresPentane(){
+        Alpha_res_oi a1 = new Alpha_res_oi();
+        Alpha_res_oi a2 = new Alpha_res_oi();
+        Alpha_res_oi a3 = new Alpha_res_oi();
+        Alpha_res_oi a4 = new Alpha_res_oi();
+        Alpha_res_oi a5 = new Alpha_res_oi();
+        Alpha_res_oi a6 = new Alpha_res_oi();
+        Alpha_res_oi a7 = new Alpha_res_oi();
+        Alpha_res_oi a8 = new Alpha_res_oi();
+        Alpha_res_oi a9 = new Alpha_res_oi();
+        Alpha_res_oi a10 = new Alpha_res_oi();
+        Alpha_res_oi a11 = new Alpha_res_oi();
+        Alpha_res_oi a12 = new Alpha_res_oi();
+
+        a1.setK(1);
+        a1.setN_oik(0.10968643098001*10);
+        a1.setC_oik(0.0);
+        a1.setD_oik(1);
+        a1.setT_oik(0.250);
+
+        a2.setK(2);
+        a2.setN_oik(-0.29988888298061*10);
+        a2.setC_oik(0.0);
+        a2.setD_oik(1);
+        a2.setT_oik(1.125);
+
+        a3.setK(3);
+        a3.setN_oik(0.99516886799212);
+        a3.setC_oik(0.0);
+        a3.setD_oik(1);
+        a3.setT_oik(1.500);
+
+
+        a4.setK(4);
+        a4.setN_oik(-0.16170708558539);
+        a4.setC_oik(0.0);
+        a4.setD_oik(2);
+        a4.setT_oik(1.375);
+
+        a5.setK(5);
+        a5.setN_oik(0.11334460072775);
+        a5.setC_oik(0.0);
+        a5.setD_oik(3);
+        a5.setT_oik(0.250);
+
+        a6.setK(6);
+        a6.setN_oik(0.26760595150748*0.001);
+        a6.setC_oik(0.0);
+        a6.setD_oik(7);
+        a6.setT_oik(0.875);
+
+        a7.setK(7);
+        a7.setN_oik(0.40979881986931);
+        a7.setC_oik(1.0);
+        a7.setD_oik(2);
+        a7.setT_oik(0.625);
+
+        a8.setK(8);
+        a8.setN_oik(-0.40876423083075*0.1);
+        a8.setC_oik(1.0);
+        a8.setD_oik(5);
+        a8.setT_oik(1.750);
+
+        a9.setK(9);
+        a9.setN_oik(-0.38169482469447);
+        a9.setC_oik(2.0);
+        a9.setD_oik(1);
+        a9.setT_oik(3.625);
+
+        a10.setK(10);
+        a10.setN_oik(-0.10931956843993);
+        a10.setC_oik(2.0);
+        a10.setD_oik(4);
+        a10.setT_oik(3.625);
+
+        a11.setK(11);
+        a11.setN_oik(-0.32073223327990*0.1);
+        a11.setC_oik(3.0);
+        a11.setD_oik(3);
+        a11.setT_oik(14.500);
+
+        a12.setK(12);
+        a12.setN_oik(0.16877016216975*0.1);
+        a12.setC_oik(3.0);
+        a12.setD_oik(4);
+        a12.setT_oik(12.000);
+
+        List<Alpha_res_oi> list = new ArrayList<>();
+        list.add(a1);
+        list.add(a2);
+        list.add(a3);
+        list.add(a4);
+        list.add(a5);
+        list.add(a6);
+        list.add(a7);
+        list.add(a8);
+        list.add(a9);
+        list.add(a10);
+        list.add(a11);
+        list.add(a12);
+
+        return list;
+    }
 
 
 
