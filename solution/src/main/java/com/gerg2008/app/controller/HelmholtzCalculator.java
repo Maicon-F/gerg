@@ -169,7 +169,6 @@ public class HelmholtzCalculator {
         }
         this.redRho = rho*(rhoRes1 + rhoRes2);
         this.redTemperature = (tRes1 + tRes2)/temperature;
-
     }
 
     //residual pure

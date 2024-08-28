@@ -1,0 +1,139 @@
+/* Global Styles */
+:root {
+    --my-primary-color: #007bff;
+    --my-primary-color-dark: #0056b3;  /* Manually define a darker shade */
+    --my-secondary-color: #6c757d;
+    --my-font-family: 'Roboto', sans-serif;
+    --my-font-size: 16px;
+}
+
+/* Apply global font styles */
+body {
+    font-family: var(--my-font-family);
+    color: #333333;
+    background-color: #f8f9fa;
+}
+
+.custom-input-style {
+    border: none; /* Blue border */
+    padding: 10px; /* Inner padding */
+    font-size: 18px; /* Font size */
+    font-family: Arial, sans-serif; /* Font family */
+    box-shadow: none; /* Remove shadow */
+    background-color: white; /* Light gray background */
+}
+
+.custom-input-style::part(input-field) {
+    border: none; /* Remove inner border if needed */
+    box-shadow: none; /* Remove inner shadow */
+    background-color: #f0f0f0; /* Match the outer background */
+}
+
+h1 {
+    padding-bottom:20px;
+    text-align: center;
+    margin: 0 auto;
+    font-size: 3.2em; /* Adjust the font size as needed */
+    color: #333;    /* Adjust the font color as needed */
+}
+
+.large-label {
+    font-size: 20px; /* Adjust the font size as needed */
+    font-weight: bold; /* Optional: makes the text bold */
+}
+
+
+.no-border {
+    border: none;
+    box-shadow: none;
+}
+
+.styled-border-layout {
+    border: 2px solid transparent; /* Set initial transparent border */
+    border-radius: 15px; /* Rounded corners */
+    background: linear-gradient(white, white), /* Inner content background */
+    linear-gradient(45deg, #ff6f61, #ff9473, #ff6f61); /* Gradient border */
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    padding: 3px; /* Padding inside the border */
+
+}
+
+.custom-combobox-label {
+    font-family: "Arial", sans-serif;  /* Change to your desired font */
+    font-size: 16px; /* Adjust the font size */
+    font-weight: bold; /* Make the font bold if needed */
+    color: #333; /* Set the text color */
+}
+
+/* Style for all Vaadin buttons */
+vaadin-button {
+    background-color: var(--my-primary-color);
+    color: white;
+    border-radius: 5px;
+    padding: 8px 16px;
+    font-size: var(--my-font-size);
+    font-family: var(--my-font-family);
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.button-hover:hover {
+    background-color: #0056b3;
+    cursor: pointer;;
+}
+
+/* Style for Vaadin TextFields */
+vaadin-text-field {
+    border: 1px solid var(--my-secondary-color);
+    border-radius: 5px;
+    padding: 8px;
+    font-size: var(--my-font-size);
+}
+
+vaadin-text-field::part(input-field) {
+    background-color: #ffffff;
+    color: #333333;
+}
+
+/* Custom Label Style */
+.custom-label {
+    font-size: 20px;
+    font-family: var(--my-font-family);
+    font-weight: bold;
+    color: var(--my-primary-color);
+}
+
+/* Custom Grid Style */
+vaadin-grid {
+    overflow: hidden;
+    padding: 10px;
+    border-radius: 15px;
+    font-family: var(--my-font-family);
+    font-size: var(--my-font-size);
+    --lumo-base-color: #ffffff;
+    --lumo-primary-text-color: #007bff;
+
+    border: 5px solid #ff6f61; /* Set initial transparent border */
+    border-radius: 15px;
+    /* Rounded corners *
+
+   }
+
+   vaadin-grid-cell-content {
+       padding: 20px;
+   }
+
+   /* Add padding to a custom view */
+
+    .custom-view {
+        padding: 20px;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+}
+
+

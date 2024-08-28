@@ -23,12 +23,15 @@ public class ComponentServiceImpl implements ComponentService {
     }
 
     @Override
-    public Component add(Component o) {
-        return null;
+    public Component save(Component o) {
+        return repository.save(o);
     }
 
     @Override
     public Component update(Component o) {
         return null;
     }
+
+
+
 }

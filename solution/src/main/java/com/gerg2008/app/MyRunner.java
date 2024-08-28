@@ -17,13 +17,6 @@ public class MyRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        System.out.println("This is a Spring Boot console application!");
-        // Your custom logic here
-     //   Iterable<com.gerg2008.app.model.Component> componentList = service.getAll();
-        List<BiCombination> biCombinationList = new ArrayList<>();
-        for (BiCombination b : biCombinationList) {
 
-        }
-        System.out.println("ok");
     }
 }

@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Getter
 @Setter
@@ -15,9 +16,6 @@ import java.util.List;
 @Entity
 public class Component {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
-
     private String name;
     private String formula;
 
@@ -35,13 +33,13 @@ public class Component {
     @JoinColumn(name="FK_COMPONENT")
     private List<Alpha_res_oi> aRes;
 
-    @ManyToMany
+    @ManyToMany( cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
             name = "component-bi",
-            joinColumns = @JoinColumn(name = "bi_id"),
-            inverseJoinColumns = @JoinColumn(name = "component_id")
+            joinColumns = @JoinColumn(name = "component_id"),
+            inverseJoinColumns = @JoinColumn(name = "combination_id")
     )
-    private List<BiCombination> binaries;
+    private List<BiCombination> binaries = new ArrayList<>();
 
 
     public BiCombination getBinaryCombination(Component c2){
@@ -52,5 +50,18 @@ public class Component {
             }
         }
         return null; //TODO: implement try/catch because not always we will find a combination btw two parameters
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Component entityA = (Component) o;
+        return Objects.equals(name, entityA.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }

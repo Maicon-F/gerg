@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -13,18 +14,20 @@ import java.util.List;
 public class BiCombination {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
     private String name;
     private double f_ij = 0;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name="FK_BICOMBINATION")
+    @JoinColumn(name="FK_bi")
     private List<Alpha_res_ij> alphaRes_ij;
 
-    @ManyToOne
-    @JoinColumn(name="FK_BICOMBINATION")
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name="FK_bicomb")
     private ReducedMixVariables redPars;
+
+
+    @ManyToMany(mappedBy = "binaries", cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    private List<Component> components = new ArrayList<>();
 
 
 }

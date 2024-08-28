@@ -25,7 +25,7 @@ public class ComponentFactory {
     public Component createPentane(){
         Component c = new Component();
         c.setName("Pentane");
-        c.setFormula("n-C5H12");
+        c.setFormula("nC5H12");
         c.setMm(72.14878*0.001);
         c.setRho_ci(3.215577588*1000);
         c.setT_ci(469.7);
@@ -443,11 +443,12 @@ public class ComponentFactory {
     private List<BiCombination> createBinaryCO2Pentane(){
         List<BiCombination> list = new ArrayList<>();
         BiCombination bi = new BiCombination();
-
+        bi.setName("CO2−nC5H12");
         Alpha_res_ij a = new Alpha_res_ij();
 
         ReducedMixVariables pars = new ReducedMixVariables();
         pars.setName("CO2−nC5H12");
+
         pars.setBetaVij(1.024311498);
         pars.setGammaVij(1.068406078);
         pars.setBetaTij(1.027000795);
@@ -465,6 +466,7 @@ public class ComponentFactory {
      Component c1  = createCO2();
      c1.setComposition(0.5);
      c1.setBinaries(combinations);
+
 
      Component c2  = createPentane();
      c2.setComposition(0.5);

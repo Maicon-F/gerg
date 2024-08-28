@@ -3,13 +3,17 @@ package com.gerg2008.app;
 import com.gerg2008.app.controller.HelmholtzCalculator;
 import com.gerg2008.app.factory.ComponentFactory;
 import com.gerg2008.app.model.Component;
+import com.gerg2008.app.service.impl.ComponentServiceImpl;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
@@ -18,6 +22,8 @@ class AppApplicationTests {
 
 	private static HelmholtzCalculator calculator;
 
+	@Autowired
+	private ComponentServiceImpl service;
 
 	@Test
 	void contextLoads() {
@@ -34,7 +40,6 @@ class AppApplicationTests {
 		calculator = new HelmholtzCalculator(66.824581, 300, list);
 		double a = calculator.calculateAlphaIdeal_oi(co2);
 		assertTrue(Math.abs(a) - 0.520 < 0.1);
-
 	}
 
 	@Test
@@ -52,7 +57,7 @@ class AppApplicationTests {
 
 
 	@Test
-	public void TestAlphaResPentane() throws Exception {
+	public void testAlphaResPentane() throws Exception {
 		ComponentFactory factory = new ComponentFactory();
 		Component p =factory.createPentane();
 		p.setComposition(1);
@@ -66,7 +71,7 @@ class AppApplicationTests {
 	}
 
 	@Test
-	public void TestAlphaResCO2() throws Exception {
+	public void testAlphaResCO2() throws Exception {
 		ComponentFactory factory = new ComponentFactory();
 		Component co2 =factory.createCO2();
 		co2.setComposition(1);
@@ -80,7 +85,7 @@ class AppApplicationTests {
 	}
 
 	@Test
-	public void estAlphaRealCO2() throws Exception {
+	public void testAlphaRealCO2() throws Exception {
 		ComponentFactory factory = new ComponentFactory();
 		Component co2 =factory.createCO2();
 		co2.setComposition(1);
@@ -103,7 +108,7 @@ class AppApplicationTests {
 		calculator = new HelmholtzCalculator(66.824581, 300, list);
 
 		double a = calculator.aReal();
-		assertTrue(Math.abs(a) - 3.28< 0.1);
+		assertTrue(Math.abs(a) - 3.28 < 0.1);
 	}
 
 }

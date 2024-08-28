@@ -9,7 +9,7 @@ public interface ComponentService {
 
     Component getByName(String name);
 
-    Component add(Component o);
+    Component save(Component o);
 
     Component update(Component o);
 }
