@@ -105,9 +105,10 @@ class AppApplicationTests {
 		ComponentFactory factory = new ComponentFactory();
 		List<Component> list = factory.createCO2PentaneEquiMixture();
 
-		calculator = new HelmholtzCalculator(66.824581, 300, list);
+		calculator = new HelmholtzCalculator(66.8245, 300, list);
 
 		double a = calculator.aReal();
+		System.out.println("AAAAA: " + a);
 		assertTrue(Math.abs(a) - 3.28 < 0.1);
 	}
 

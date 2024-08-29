@@ -19,7 +19,8 @@ public class ComponentServiceImpl implements ComponentService {
 
     @Override
     public Component getByName(String name) {
-        return null;
+        return repository.findById(name).orElse(null);
+
     }
 
     @Override
@@ -29,7 +30,8 @@ public class ComponentServiceImpl implements ComponentService {
 
     @Override
     public Component update(Component o) {
-        return null;
+        repository.save(o);
+        return repository.findById(o.getName()).orElse(null);
     }
 
 

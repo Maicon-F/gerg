@@ -1,5 +1,6 @@
 package com.gerg2008.app.views;
 
+import com.gerg2008.app.controller.HelmholtzCalculator;
 import com.gerg2008.app.model.Component;
 import com.gerg2008.app.service.impl.ComponentServiceImpl;
 import com.vaadin.flow.component.button.Button;
@@ -21,7 +22,9 @@ import grids.ComponentGrid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
+import utils.ObjFunction;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,12 +40,23 @@ public class HomeView extends VerticalLayout {
     private HashMap<String, Double> map = new HashMap<>();
     private String s ="";
     private String xi = "";
+    private CustomButton submit;
 
     Grid<Map.Entry<String, Double>> grid = new Grid<>();
 
-    public HomeView(@Autowired ComponentServiceImpl service) {
+    public HomeView(@Autowired ComponentServiceImpl service) throws Exception {
         this.service = service;
         add(new H1("GERG 2008 EOS Application"));
+
+        submit = new CustomButton("Submit");
+        submit.addClickListener(event -> {
+            try {
+                submitAction();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
+
         createCombobox();
         createMapGrid();
 
@@ -64,13 +78,28 @@ public class HomeView extends VerticalLayout {
         }
     }
 
-    public void submit(){
+    public void submitAction() throws Exception {
         Double sum = 0.0;
+        List<Component> list = new ArrayList<>();
         for(Double v: map.values()) {
             sum = sum + v;
         }
-        if(sum !=0 )
-            new CustomNotification("Wront input. The sum of all compositions must be equals to 1");
+        if(sum !=1 )
+            new CustomNotification("Wrong input. The sum of all compositions must be equals to 1");
+
+        for(String key: map.keySet()) {
+            Component c = service.getByName(key);
+            c.setComposition(map.get(key));
+            list.add(c);
+        }
+
+       double guess = 100000.0/(8.3*300.0*0.6);
+
+        ObjFunction obj = new ObjFunction();
+       double  res = obj.iterativeSolution(guess, 300, 100000, list);
+
+        System.out.println(res);
+
     }
 
 
@@ -98,6 +127,9 @@ public class HomeView extends VerticalLayout {
         vl.add(hl);
         vl.add(createButtons());
         vl.add(grid);
+
+
+        vl.add(submit);
         vl.setAlignItems(Alignment.CENTER);
         vl.setWidth("auto");
 

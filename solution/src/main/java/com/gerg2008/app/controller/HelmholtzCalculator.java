@@ -216,7 +216,7 @@ public class HelmholtzCalculator {
     public double calculateAlphaoResij(Component c1, Component c2) throws Exception {
         BiCombination bi = c1.getBinaryCombination(c2);
 
-        if(bi.getAlphaRes_ij() == null)
+        if(bi.getAlphaRes_ij() == null || bi.getAlphaRes_ij().isEmpty())
             return 0.0;
 
         int kPOL = calculateKexp(c1)[0];
@@ -277,6 +277,7 @@ public class HelmholtzCalculator {
     public double aReal() throws Exception {
         return mixAIdeal() + mixResidual();
     }
+
 
 
 }

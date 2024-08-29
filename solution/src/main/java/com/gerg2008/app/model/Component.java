@@ -45,7 +45,7 @@ public class Component {
     public BiCombination getBinaryCombination(Component c2){
         for(BiCombination b: binaries){
             for(BiCombination b2: c2.getBinaries()){
-                if(b.equals(b2))
+                if(b.getName().equals(b2.getName()))
                     return b;
             }
         }
