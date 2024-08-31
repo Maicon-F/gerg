@@ -7,6 +7,8 @@
     --my-font-size: 16px;
 }
 
+
+
 /* Apply global font styles */
 body {
     font-family: var(--my-font-family);
@@ -49,13 +51,10 @@ h1 {
 }
 
 .styled-border-layout {
-    border: 2px solid transparent; /* Set initial transparent border */
+    border: 2px solid #5A9BD5; /* Set initial transparent border */
     border-radius: 15px; /* Rounded corners */
-    background: linear-gradient(white, white), /* Inner content background */
-    linear-gradient(45deg, #ff6f61, #ff9473, #ff6f61); /* Gradient border */
-    background-origin: border-box;
-    background-clip: content-box, border-box;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    background-color: white;
+
     padding: 3px; /* Padding inside the border */
 
 }
@@ -105,24 +104,33 @@ vaadin-text-field::part(input-field) {
     color: var(--my-primary-color);
 }
 
+.centralized-layout {
+    align-items: baseline;
+}
+
 /* Custom Grid Style */
 vaadin-grid {
     overflow: hidden;
-    padding: 10px;
+    padding: 50px;
+
     border-radius: 15px;
     font-family: var(--my-font-family);
     font-size: var(--my-font-size);
     --lumo-base-color: #ffffff;
     --lumo-primary-text-color: #007bff;
 
-    border: 5px solid #ff6f61; /* Set initial transparent border */
-    border-radius: 15px;
-    /* Rounded corners *
+    border: 1px solid #5A9BD5; /* Set initial transparent border */
 
    }
 
+
+[part~="header-cell"] {
+    white-space: normal;
+}
+
    vaadin-grid-cell-content {
        padding: 20px;
+
    }
 
    /* Add padding to a custom view */
@@ -134,6 +142,6 @@ vaadin-grid {
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 
-}
+
 
 

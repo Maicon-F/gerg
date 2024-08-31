@@ -4,7 +4,6 @@ import com.gerg2008.app.model.BiCombination;
 import com.gerg2008.app.model.Component;
 import com.gerg2008.app.model.ReducedMixVariables;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,6 +21,7 @@ public class HelmholtzCalculator {
     public HelmholtzCalculator(double rho, double temperature, List<Component> components) {
         this.components = components;
         this.rho = rho;
+        System.out.println("RHO: " + rho);
         this.temperature = temperature;
 
         calculateReducedVariables();
@@ -33,11 +33,11 @@ public class HelmholtzCalculator {
         double t = c.getT_ci()/temperature;
         double a, rhoc = c.getRho_ci();
         double n1, n2, n3;
+
         n1 = getNoik(c,1);
         n2=  getNoik(c,2);
         n3 = getNoik(c,3);
-        a = Math.log(rho/rhoc) + (Rstar/Rstd)*(n1 +n2*t + n3*Math.log(t));
-        a = a + sumTerms(t, c);
+        a = Math.log(rho/rhoc) + (Rstar/Rstd)*(n1 +n2*t + n3*Math.log(t) + sumTerms(t, c));
         return a;
     }
 
@@ -45,6 +45,8 @@ public class HelmholtzCalculator {
         int[] steps = {4,6};
         double sinh,cosh, sum = 0.0;
         double teta, tetaplus, n, nplus;
+        double sum1=0.0, sum2=0.0;
+
         for(int k: steps){
             teta = getTetaoik(c, k);
             tetaplus = getTetaoik(c,k+1);
@@ -54,11 +56,15 @@ public class HelmholtzCalculator {
             //TODO: check whether I should have ignored
 
             sinh = Math.abs(Math.sinh(teta*t));
-            cosh = Math.abs(Math.cosh(tetaplus*t));
-            sum = sum + n*(Math.log(sinh)) -  nplus*(Math.log(cosh));
+            cosh = Math.cosh(tetaplus*t);
 
+            sum1= sum1 + n*(Math.log(sinh));
+            sum2= sum2 +  nplus*(Math.log(cosh));
 
         }
+
+        sum = sum1 - sum2;
+
         return sum;
     }
 
@@ -275,7 +281,14 @@ public class HelmholtzCalculator {
     }
 
     public double aReal() throws Exception {
-        return mixAIdeal() + mixResidual();
+        System.out.println("mix ideal "+mixAIdeal());
+        System.out.println("mix residual: " + mixResidual());
+
+        double result = (mixAIdeal() + mixResidual())*R*temperature;
+
+
+
+        return result;
     }
 
 
