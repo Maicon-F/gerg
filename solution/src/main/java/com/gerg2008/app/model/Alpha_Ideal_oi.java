@@ -5,6 +5,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+
+/**
+ * Class holds Helmholtz ideal pure parameters
+ * @author Maicon Fernandes
+ */
+
+
 @Getter
 @Setter
 @NoArgsConstructor

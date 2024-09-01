@@ -4,6 +4,13 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+
+/**
+ * Class holds reduced variable parameters
+ * @author Maicon Fernandes
+ */
+
+
 @Getter
 @Setter
 @Entity

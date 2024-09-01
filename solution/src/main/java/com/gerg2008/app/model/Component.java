@@ -1,14 +1,23 @@
 package com.gerg2008.app.model;
 
 
+import customizedVaadinComponents.CustomNotification;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import utils.InputValidationException;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
+
+/**
+ * Class holds critical parameters, molar mass and all possible binary combinations
+ * @author Maicon Fernandes
+ */
+
 
 @Getter
 @Setter
@@ -49,7 +58,34 @@ public class Component {
                     return b;
             }
         }
-        return null; //TODO: implement try/catch because not always we will find a combination btw two parameters
+        String msg = String.format("No binary combination found for %s and %s", this.getName(), c2.getName());
+        new CustomNotification(msg);
+        throw new InputValidationException(msg);
+    }
+
+
+    public double getNoik(int k){
+        double noik = this.getAIdeal().stream().filter(i -> i.getK() == k).collect(Collectors.toList()).get(0).getN_oik();
+        return noik;
+    }
+
+    public double getTetaoik(int k){
+        return this.getAIdeal().stream().filter(i -> i.getK() == k).toList().get(0).getTeta_oik();
+    }
+
+    public double getResNoik(int k){
+        return this.getARes().stream().filter(i -> i.getK() == k).toList().get(0).getN_oik();
+    }
+
+    public double getDoik(int k){
+        return this.getARes().stream().filter(i -> i.getK() == k).toList().get(0).getD_oik();
+    }
+
+    public double getToik(int k){
+        return this.getARes().stream().filter(i -> i.getK() == k).toList().get(0).getT_oik();
+    }
+    public double getCoik(int k){
+        return this.getARes().stream().filter(i -> i.getK() == k).toList().get(0).getC_oik();
     }
 
     @Override

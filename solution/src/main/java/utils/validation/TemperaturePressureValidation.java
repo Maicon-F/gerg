@@ -1,7 +1,6 @@
 package utils.validation;
 
 import com.gerg2008.app.model.Component;
-import customizedVaadinComponents.CustomNotification;
 import utils.InputValidationException;
 
 import java.util.List;

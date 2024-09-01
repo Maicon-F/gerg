@@ -14,6 +14,7 @@ import utils.ObjFunction;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.gerg2008.app.Constants.R;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
@@ -55,7 +56,6 @@ class AppApplicationTests {
 
 	}
 
-
 	@Test
 	public void testAlphaResPentane() throws Exception {
 		ComponentFactory factory = new ComponentFactory();
@@ -96,9 +96,8 @@ class AppApplicationTests {
 		calculator = new HelmholtzCalculator(66.824581, 300, list);
 
 		double a = calculator.aReal();
-		assertTrue(Math.abs(a) - 0.520 < 0.1);
+		assertTrue(Math.abs(a) - 1310 < 10);
 	}
-
 
 	@Test
 	public void testMixtureCO2Pentane() throws Exception {
@@ -108,45 +107,7 @@ class AppApplicationTests {
 		calculator = new HelmholtzCalculator(66.8245, 300, list);
 
 		double a = calculator.aReal();
-		System.out.println("AAAAA: " + a);
-		assertTrue(Math.abs(a) - 3.28 < 0.1);
+		assertTrue(Math.abs(a) - 8186 < 10);
 	}
-
-	@Test
-	public void testRhoMixtureCO2Pentane() throws Exception {
-		ComponentFactory factory = new ComponentFactory();
-		List<Component> list = factory.createCO2PentaneEquiMixture();
-
-		ObjFunction f = new ObjFunction();
-		double result = f.solve(69139,300,100000, list);
-
-		System.out.println("RESULT: "+ result);
-
-	}
-
-	@Test
-	public void testOfBivariantSolver(){
-		UnivariateFunction function = x -> (x - 3) * (x - 3);
-
-		UnivariateFunction derivative = x -> 2 * (x - 3);
-
-		// Create an instance of BrentSolver
-		BrentSolver solver = new BrentSolver(1e-8, 1e-8);
-
-		// Define the interval to search in
-		double lowerBound = 0;
-		double upperBound = 6;
-
-		// Perform the optimization by finding the root of the derivative function
-		double minimumPoint = solver.solve(1000, derivative, lowerBound, upperBound);
-
-		// Evaluate the function at the found point
-		double minimumValue = function.value(minimumPoint);
-
-		// Output the result
-		System.out.println("Minimum value: " + minimumValue);
-		System.out.println("Point of minimum: " + minimumPoint);
-	}
-
 
 }

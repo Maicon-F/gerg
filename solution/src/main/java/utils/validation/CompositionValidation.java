@@ -1,6 +1,5 @@
 package utils.validation;
 
-import customizedVaadinComponents.CustomNotification;
 import utils.InputValidationException;
 
 import java.util.Map;

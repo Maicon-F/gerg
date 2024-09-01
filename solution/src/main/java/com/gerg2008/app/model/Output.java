@@ -1,16 +1,17 @@
 package com.gerg2008.app.model;
 
 
-import com.gerg2008.app.controller.Derivative;
-import customizedVaadinComponents.CustomNotification;
+
 import lombok.Getter;
 import lombok.Setter;
-import utils.ObjFunction;
-
-import java.util.ArrayList;
 import java.util.List;
 
-import static com.gerg2008.app.Constants.R;
+
+/**
+ * Class holds physical-chemical properties obtained as final result
+ * @author Maicon Fernandes
+ */
+
 
 @Getter
 @Setter
@@ -30,7 +31,6 @@ public class Output {
     private double muJT;
     private Type type;
 
-
     public Output(double z, double cv, double cp, double alpha, double rho, double kT, double u, double muJT, Type type) {
     this.z = z;
     this.cv = cv;
@@ -41,7 +41,6 @@ public class Output {
     this.u = u;
     this.muJT = muJT;
     this.type = type;
-
     }
 
 }

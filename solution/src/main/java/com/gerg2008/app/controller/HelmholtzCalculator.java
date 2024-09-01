@@ -5,11 +5,12 @@ import com.gerg2008.app.model.Component;
 import com.gerg2008.app.model.ReducedMixVariables;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static com.gerg2008.app.Constants.*;
 
-
+/**
+ * @author Maicon Fernandes
+ */
 public class HelmholtzCalculator {
 
     private List<Component> components;
@@ -26,15 +27,14 @@ public class HelmholtzCalculator {
     }
 
 
-    //ideal pure
     public double calculateAlphaIdeal_oi(Component c){
         double t = c.getT_ci()/temperature;
         double a, rhoc = c.getRho_ci();
         double n1, n2, n3;
 
-        n1 = getNoik(c,1);
-        n2=  getNoik(c,2);
-        n3 = getNoik(c,3);
+        n1 = c.getNoik(1);
+        n2=  c.getNoik(2);
+        n3 = c.getNoik(3);
         a = Math.log(rho/rhoc) + (Rstar/Rstd)*(n1 +n2*t + n3*Math.log(t) + sumTerms(t, c));
         return a;
     }
@@ -46,19 +46,17 @@ public class HelmholtzCalculator {
         double sum1=0.0, sum2=0.0;
 
         for(int k: steps){
-            teta = getTetaoik(c, k);
-            tetaplus = getTetaoik(c,k+1);
-            n = getNoik(c, k);
-            nplus = getNoik(c, k+1);
+            teta = c.getTetaoik(k);
+            tetaplus = c.getTetaoik(k+1);
+            n = c.getNoik(k);
+            nplus = c.getNoik(k+1);
 
             sinh = Math.abs(Math.sinh(teta*t));
             cosh = Math.cosh(tetaplus*t);
 
             sum1= sum1 + n*(Math.log(sinh));
             sum2= sum2 +  nplus*(Math.log(cosh));
-
         }
-
         sum = sum1 - sum2;
 
         return sum;
@@ -110,7 +108,6 @@ public class HelmholtzCalculator {
         this.redTemperature = (tRes1 + tRes2)/temperature;
     }
 
-    //residual pure
 
     public double calculateAlphaResoi(Component c) throws Exception {
      int kPOL = calculateKexp(c)[0];
@@ -118,12 +115,12 @@ public class HelmholtzCalculator {
     double sum1 = 0.0, sum2 = 0.0;
 
     for(int i=1; i <= kPOL; i++){
-        sum1 = getResNoik(c, i)*Math.pow(redRho, getDoik(c,i))*Math.pow(redTemperature,getToik(c,i)) + sum1;
+        sum1 = c.getResNoik(i)*Math.pow(redRho, c.getDoik(i))*Math.pow(redTemperature,c.getToik(i)) + sum1;
     }
 
 
     for(int j=kPOL+1; j <= kPOL + kEXP; j++){
-            sum2 = getResNoik(c, j)*Math.pow(redRho, getDoik(c,j))*Math.pow(redTemperature,getToik(c,j))*Math.exp(-Math.pow(redRho,getCoik(c,j))) + sum2;
+            sum2 = c.getResNoik(j)*Math.pow(redRho, c.getDoik(j))*Math.pow(redTemperature,c.getToik(j))*Math.exp(-Math.pow(redRho,c.getCoik(j))) + sum2;
     }
 
     return sum1 + sum2;
@@ -164,13 +161,13 @@ public class HelmholtzCalculator {
         double exp;
 
         for(int i=1; i <= kPOL; i++){
-            sum1 = getNijk(bi, i)*Math.pow(redRho, getDijk(bi,i))*Math.pow(redTemperature,getTijk(bi,i)) + sum1;
+            sum1 = bi.getNijk(i)*Math.pow(redRho, bi.getDijk(i))*Math.pow(redTemperature,bi.getTijk(i)) + sum1;
         }
 
         //TODO: Confirm exponential position. Is it multipling by Tij or the parent term?
         for(int j=kPOL+1; j <= kPOL + kEXP; j++){
-            exp = Math.exp(-getNijk(bi,j)*Math.pow(redRho - getEpisolonijk(bi,j),2) - getBetaijk(bi,j)*(redRho -getgGamaijk(bi,j)));
-            sum2 = getNijk(bi, j)*Math.pow(redRho, getDijk(bi,j))*Math.pow(redTemperature,getTijk(bi,j)*exp) + sum2;
+            exp = Math.exp(-bi.getNijk(j)*Math.pow(redRho - bi.getEpisolonijk(j),2) - bi.getBetaijk(j)*(redRho -bi.getgGamaijk(j)));
+            sum2 = bi.getNijk(j)*Math.pow(redRho, bi.getDijk(j))*Math.pow(redTemperature,bi.getTijk(j)*exp) + sum2;
         }
 
         return sum1 + sum2;
@@ -216,75 +213,6 @@ public class HelmholtzCalculator {
     public double aReal() throws Exception {
         return (mixAIdeal() + mixResidual())*R*temperature;
     }
-
-
-
-
-
-
-    //TODO: Use OOP to remove this secondary methods out of the controller AND OR to simplify this
-    private double getNoik(Component c, int k){
-        double noik = c.getAIdeal().stream().filter(i -> i.getK() == k).collect(Collectors.toList()).get(0).getN_oik();
-        return noik;
-    }
-
-
-    private double getTetaoik(Component c, int k){
-        double tetaoik = c.getAIdeal().stream().filter(i -> i.getK() == k).collect(Collectors.toList()).get(0).getTeta_oik();
-        return tetaoik;
-    }
-
-
-    private double getResNoik(Component c, int k){
-        double noik = c.getARes().stream().filter(i -> i.getK() == k).collect(Collectors.toList()).get(0).getN_oik();
-        return noik;
-    }
-
-
-    private double getDoik(Component c, int k){
-        double doik = c.getARes().stream().filter(i -> i.getK() == k).collect(Collectors.toList()).get(0).getD_oik();
-        return doik;
-    }
-
-    private double getToik(Component c, int k){
-        double toik = c.getARes().stream().filter(i -> i.getK() == k).collect(Collectors.toList()).get(0).getT_oik();
-        return toik;
-    }
-    private double getCoik(Component c, int k){
-        double coik = c.getARes().stream().filter(i -> i.getK() == k).collect(Collectors.toList()).get(0).getC_oik();
-        return coik;
-    }
-
-    private double getNijk(BiCombination bi, int k){
-        double nij = bi.getAlphaRes_ij().stream().filter(i -> i.getK() == k).collect(Collectors.toList()).get(0).getN_ijk();
-        return nij;
-    }
-
-    private double getDijk(BiCombination bi, int k){
-        double dij = bi.getAlphaRes_ij().stream().filter(i -> i.getK() == k).collect(Collectors.toList()).get(0).getD_ijk();
-        return dij;
-    }
-
-    private double getTijk(BiCombination bi, int k){
-        double tij = bi.getAlphaRes_ij().stream().filter(i -> i.getK() == k).collect(Collectors.toList()).get(0).getT_ijk();
-        return tij;
-    }
-
-    private double getBetaijk(BiCombination bi, int k){
-        double betaij = bi.getAlphaRes_ij().stream().filter(i -> i.getK() == k).collect(Collectors.toList()).get(0).getBeta_ijk();
-        return betaij;
-    }
-
-    private double getgGamaijk(BiCombination bi, int k){
-        double gamaij = bi.getAlphaRes_ij().stream().filter(i -> i.getK() == k).collect(Collectors.toList()).get(0).getGama_ijk();
-        return gamaij;
-    }
-
-    private double getEpisolonijk(BiCombination bi, int k){
-        double episolonij = bi.getAlphaRes_ij().stream().filter(i -> i.getK() == k).collect(Collectors.toList()).get(0).getEpisilon_ijk();
-        return episolonij;
-    }
-
 
 
 

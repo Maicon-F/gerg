@@ -8,6 +8,9 @@ import java.util.List;
 
 import static com.gerg2008.app.Constants.R;
 
+/**
+ * @author Maicon Fernandes
+ */
 public class Derivative {
 
     public Output calculate(double rho, double temperature, List<Component> list, Type type) throws Exception {

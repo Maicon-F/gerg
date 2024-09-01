@@ -31,6 +31,11 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
+/**
+ * @author Maicon Fernandes
+ */
+
+
 @Route("")
 @SpringComponent
 @Scope("prototype")
