@@ -6,10 +6,14 @@ This project is an educational (and only educational) implementation of the GERG
 <h2>How it looks like: </h2>
 [image](https://github.com/user-attachments/assets/804fd9b2-4b39-4d91-bad2-757266597544)(https://www.youtube.com/watch?v=8zhCGxA2_o8)
 
+<img alt="image" src="[https://github.com/user-attachments/assets/804fd9b2-4b39-4d91-bad2-757266597544](https://github.com/user-attachments/assets/804fd9b2-4b39-4d91-bad2-757266597544)"/>
 
 <h2>How to use it</h2>
 You need to have JDK 22 and Postgres database to run it without further ado. However, other database can be used, as long as it is a relational database and the right modificaitons on the application.properties are done. I have provided a sql txt file in order to populate carbon dioxide and pentane parameters, other substances must be populated manually for now. Before running the sql, load the classes using JPA|Hibernate manager by running the app, otherwise a error message should be expected. 
 An applicational video can be watched [here](https://www.youtube.com/watch?v=8zhCGxA2_o8)
+
+<h2>Status</h2>
+<a href="https://www.youtube.com/watch?v=8zhCGxA2_o8">✅Check it out Here!✅</a> 
 
 <h2>Tools</h2>
 - JDK 22
