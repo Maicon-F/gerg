@@ -7,6 +7,9 @@ import java.util.List;
 
 import static com.gerg2008.app.Constants.R;
 
+/**
+ * contains the validation associated with temperature and pressure only
+ */
 
 public class TemperaturePressureValidation extends Validator {
     private final double temperature;

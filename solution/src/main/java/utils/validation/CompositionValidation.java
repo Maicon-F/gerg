@@ -4,6 +4,9 @@ import utils.InputValidationException;
 
 import java.util.Map;
 
+/**
+ * contains the validation associated with composition only
+ */
 public class CompositionValidation extends Validator {
     private final Map<String, Double> map;
 

@@ -14,7 +14,7 @@ import java.util.List;
 import static com.gerg2008.app.Constants.R;
 
 /**
- * Class calculates the result by output type Liquid | Vapor
+ * calculates the result by output type (liquid | vapor)
  * @author Maicon Fernandes
  */
 @Getter

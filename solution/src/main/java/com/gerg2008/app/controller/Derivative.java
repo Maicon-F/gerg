@@ -9,14 +9,14 @@ import java.util.List;
 import static com.gerg2008.app.Constants.R;
 
 /**
- * @author Maicon Fernandes
  * handles derivative and physical-chemical properties calculation
+ * @author Maicon Fernandes
+ *
  */
 public class Derivative {
 
 
     /**
-     * @author Maicon Fernandes
      * compute physical-chemical properties
      * see Finite difference in several variables em https://en.wikipedia.org/wiki/Finite_difference
      */
@@ -55,7 +55,6 @@ public class Derivative {
     }
 
     /**
-     * @author Maicon Fernandes
      * compute internal energy
      *
      */

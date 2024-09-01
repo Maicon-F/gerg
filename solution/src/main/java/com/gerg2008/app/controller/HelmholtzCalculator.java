@@ -9,8 +9,9 @@ import java.util.List;
 import static com.gerg2008.app.Constants.*;
 
 /**
- * @author Maicon Fernandes
  * contains all procedures to calculate the Helmhotlz energy for real mixtures
+ * @author Maicon Fernandes
+ *
  */
 public class HelmholtzCalculator {
 

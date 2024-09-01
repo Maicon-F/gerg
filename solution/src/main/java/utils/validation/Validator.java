@@ -2,6 +2,11 @@ package utils.validation;
 
 import utils.InputValidationException;
 
+
+/**
+ * responsable for modeling the shape of validators
+ */
+
 public abstract class Validator {
 
     private Validator next;
