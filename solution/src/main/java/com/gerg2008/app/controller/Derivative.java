@@ -2,6 +2,7 @@ package com.gerg2008.app.controller;
 
 import com.gerg2008.app.model.Component;
 import com.gerg2008.app.model.Output;
+import com.gerg2008.app.model.Type;
 
 import java.util.List;
 
@@ -9,7 +10,7 @@ import static com.gerg2008.app.Constants.R;
 
 public class Derivative {
 
-    public Output calculate(double rho, double temperature, List<Component> list, String type) throws Exception {
+    public Output calculate(double rho, double temperature, List<Component> list, Type type) throws Exception {
         double tol = 0.0001;
         double ump, umm;
         double ap0, am0, a0m, a00, a0p, app, amm, apm, amp;
@@ -29,7 +30,7 @@ public class Derivative {
 
 
 
-//Ver Finite difference in several variables em https://en.wikipedia.org/wiki/Finite_difference
+//see Finite difference in several variables em https://en.wikipedia.org/wiki/Finite_difference
         double tol2 = Math.pow(tol,2);
         z = - (ap0 - am0) / (2 * tol * R * temperature);
         System.out.println("Z: "+ z);

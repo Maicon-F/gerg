@@ -8,5 +8,8 @@ public class CustomTextField extends TextField {
         TextField textField = new TextField();
         this.setLabel(label);
         this.addClassName("custom-input-style");
+
+        this.setMaxWidth("110px");
+
     }
 }

@@ -21,9 +21,7 @@ public class HelmholtzCalculator {
     public HelmholtzCalculator(double rho, double temperature, List<Component> components) {
         this.components = components;
         this.rho = rho;
-        System.out.println("RHO: " + rho);
         this.temperature = temperature;
-
         calculateReducedVariables();
     }
 
@@ -53,8 +51,6 @@ public class HelmholtzCalculator {
             n = getNoik(c, k);
             nplus = getNoik(c, k+1);
 
-            //TODO: check whether I should have ignored
-
             sinh = Math.abs(Math.sinh(teta*t));
             cosh = Math.cosh(tetaplus*t);
 
@@ -68,69 +64,6 @@ public class HelmholtzCalculator {
         return sum;
     }
 
-
-    //TODO: Use OOP to remove this secondary methods out of the controller AND OR to simplify this
-    private double getNoik(Component c, int k){
-        double noik = c.getAIdeal().stream().filter(i -> i.getK() == k).collect(Collectors.toList()).get(0).getN_oik();
-        return noik;
-    }
-
-
-    private double getTetaoik(Component c, int k){
-        double tetaoik = c.getAIdeal().stream().filter(i -> i.getK() == k).collect(Collectors.toList()).get(0).getTeta_oik();
-        return tetaoik;
-    }
-
-
-    private double getResNoik(Component c, int k){
-        double noik = c.getARes().stream().filter(i -> i.getK() == k).collect(Collectors.toList()).get(0).getN_oik();
-        return noik;
-    }
-
-
-    private double getDoik(Component c, int k){
-        double doik = c.getARes().stream().filter(i -> i.getK() == k).collect(Collectors.toList()).get(0).getD_oik();
-        return doik;
-    }
-
-    private double getToik(Component c, int k){
-        double toik = c.getARes().stream().filter(i -> i.getK() == k).collect(Collectors.toList()).get(0).getT_oik();
-        return toik;
-    }
-    private double getCoik(Component c, int k){
-        double coik = c.getARes().stream().filter(i -> i.getK() == k).collect(Collectors.toList()).get(0).getC_oik();
-        return coik;
-    }
-
-    private double getNijk(BiCombination bi, int k){
-        double nij = bi.getAlphaRes_ij().stream().filter(i -> i.getK() == k).collect(Collectors.toList()).get(0).getN_ijk();
-        return nij;
-    }
-
-    private double getDijk(BiCombination bi, int k){
-        double dij = bi.getAlphaRes_ij().stream().filter(i -> i.getK() == k).collect(Collectors.toList()).get(0).getD_ijk();
-        return dij;
-    }
-
-    private double getTijk(BiCombination bi, int k){
-        double tij = bi.getAlphaRes_ij().stream().filter(i -> i.getK() == k).collect(Collectors.toList()).get(0).getT_ijk();
-        return tij;
-    }
-
-    private double getBetaijk(BiCombination bi, int k){
-        double betaij = bi.getAlphaRes_ij().stream().filter(i -> i.getK() == k).collect(Collectors.toList()).get(0).getBeta_ijk();
-        return betaij;
-    }
-
-    private double getgGamaijk(BiCombination bi, int k){
-        double gamaij = bi.getAlphaRes_ij().stream().filter(i -> i.getK() == k).collect(Collectors.toList()).get(0).getGama_ijk();
-        return gamaij;
-    }
-
-    private double getEpisolonijk(BiCombination bi, int k){
-        double episolonij = bi.getAlphaRes_ij().stream().filter(i -> i.getK() == k).collect(Collectors.toList()).get(0).getEpisilon_ijk();
-        return episolonij;
-    }
 
 
     //reducedVars
@@ -281,15 +214,77 @@ public class HelmholtzCalculator {
     }
 
     public double aReal() throws Exception {
-        System.out.println("mix ideal "+mixAIdeal());
-        System.out.println("mix residual: " + mixResidual());
-
-        double result = (mixAIdeal() + mixResidual())*R*temperature;
-
-
-
-        return result;
+        return (mixAIdeal() + mixResidual())*R*temperature;
     }
+
+
+
+
+
+
+    //TODO: Use OOP to remove this secondary methods out of the controller AND OR to simplify this
+    private double getNoik(Component c, int k){
+        double noik = c.getAIdeal().stream().filter(i -> i.getK() == k).collect(Collectors.toList()).get(0).getN_oik();
+        return noik;
+    }
+
+
+    private double getTetaoik(Component c, int k){
+        double tetaoik = c.getAIdeal().stream().filter(i -> i.getK() == k).collect(Collectors.toList()).get(0).getTeta_oik();
+        return tetaoik;
+    }
+
+
+    private double getResNoik(Component c, int k){
+        double noik = c.getARes().stream().filter(i -> i.getK() == k).collect(Collectors.toList()).get(0).getN_oik();
+        return noik;
+    }
+
+
+    private double getDoik(Component c, int k){
+        double doik = c.getARes().stream().filter(i -> i.getK() == k).collect(Collectors.toList()).get(0).getD_oik();
+        return doik;
+    }
+
+    private double getToik(Component c, int k){
+        double toik = c.getARes().stream().filter(i -> i.getK() == k).collect(Collectors.toList()).get(0).getT_oik();
+        return toik;
+    }
+    private double getCoik(Component c, int k){
+        double coik = c.getARes().stream().filter(i -> i.getK() == k).collect(Collectors.toList()).get(0).getC_oik();
+        return coik;
+    }
+
+    private double getNijk(BiCombination bi, int k){
+        double nij = bi.getAlphaRes_ij().stream().filter(i -> i.getK() == k).collect(Collectors.toList()).get(0).getN_ijk();
+        return nij;
+    }
+
+    private double getDijk(BiCombination bi, int k){
+        double dij = bi.getAlphaRes_ij().stream().filter(i -> i.getK() == k).collect(Collectors.toList()).get(0).getD_ijk();
+        return dij;
+    }
+
+    private double getTijk(BiCombination bi, int k){
+        double tij = bi.getAlphaRes_ij().stream().filter(i -> i.getK() == k).collect(Collectors.toList()).get(0).getT_ijk();
+        return tij;
+    }
+
+    private double getBetaijk(BiCombination bi, int k){
+        double betaij = bi.getAlphaRes_ij().stream().filter(i -> i.getK() == k).collect(Collectors.toList()).get(0).getBeta_ijk();
+        return betaij;
+    }
+
+    private double getgGamaijk(BiCombination bi, int k){
+        double gamaij = bi.getAlphaRes_ij().stream().filter(i -> i.getK() == k).collect(Collectors.toList()).get(0).getGama_ijk();
+        return gamaij;
+    }
+
+    private double getEpisolonijk(BiCombination bi, int k){
+        double episolonij = bi.getAlphaRes_ij().stream().filter(i -> i.getK() == k).collect(Collectors.toList()).get(0).getEpisilon_ijk();
+        return episolonij;
+    }
+
 
 
 

@@ -1,64 +1,46 @@
 package utils;
-
 import com.gerg2008.app.controller.HelmholtzCalculator;
 import com.gerg2008.app.model.Component;
 import de.linearbits.newtonraphson.Function2D;
 import de.linearbits.newtonraphson.NewtonRaphson2D;
-import de.linearbits.newtonraphson.NewtonRaphsonConfiguration;
 import de.linearbits.newtonraphson.Vector2D;
 
 import java.util.List;
 
 import static com.gerg2008.app.Constants.R;
 
-public class ObjFunction{
+public class ObjFunction {
 
 
     public double solve(double rho, double temperature, double P, List<Component> list) throws Exception {
         double delta = 0.001;
-        double Z;
         double ump = 1 + delta;
         double umm = 1 - delta;
 
-      //  HelmholtzCalculator calculator1 = new HelmholtzCalculator(rho*ump, temperature, list);
-      //  double ap = calculator1.aReal();
-      //  System.out.println("AP---" + ap);
-
-      //  HelmholtzCalculator calculator2 = new HelmholtzCalculator(rho*umm, temperature, list);
-     //   double am = calculator2.aReal();
-    //    System.out.println("AM---" + am);
-
-    //    Z = ((ap - am)/(2*delta))/(R*temperature);
-
-
-    //    System.out.println("Z---" + Z);
-
-
         Function2D object1 = new Function2D() {
             public Double evaluate(Vector2D input) {
-                HelmholtzCalculator calculator1 = new HelmholtzCalculator(input.x*ump, temperature, list);
-                HelmholtzCalculator calculator2 = new HelmholtzCalculator(input.x*umm, temperature, list);
-                 try {
+                HelmholtzCalculator calculator1 = new HelmholtzCalculator(input.x * ump, temperature, list);
+                HelmholtzCalculator calculator2 = new HelmholtzCalculator(input.x * umm, temperature, list);
+                try {
                     double ap1 = calculator1.aReal();
                     double am2 = calculator2.aReal();
                     System.out.println("==================");
-                    return ((ap1 - am2)/(2*delta))/(R*temperature) - input.y;
-                 } catch (Exception e) {
+                    return ((ap1 - am2) / (2 * delta)) / (R * temperature) - input.y;
+                } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
             }
         };
 
-
         Function2D object2 = new Function2D() {
             public Double evaluate(Vector2D input) {
-                return input.x * input.y - P/(R * temperature);
+                return input.x * input.y - P / (R * temperature);
             }
         };
 
         double[][] arr = new double[1][2];
         arr[0][0] = rho;
-        arr[0][1] = -1;
+        arr[0][1] = 1;
 
 
         NewtonRaphson2D nr = new NewtonRaphson2D(object1, object2)
@@ -69,13 +51,6 @@ public class ObjFunction{
 
 
         Vector2D result = nr.solve(new Vector2D(rho, 1.0d));
-
-
-
-        System.out.println("result rho:-------" + result.x);
-        System.out.println("result z:-------" + result.y);
-
-
 
         return result.x;
 

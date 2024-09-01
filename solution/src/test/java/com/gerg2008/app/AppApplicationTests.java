@@ -4,21 +4,15 @@ import com.gerg2008.app.controller.HelmholtzCalculator;
 import com.gerg2008.app.factory.ComponentFactory;
 import com.gerg2008.app.model.Component;
 import com.gerg2008.app.service.impl.ComponentServiceImpl;
-import de.linearbits.newtonraphson.Function2D;
-import de.linearbits.newtonraphson.NewtonRaphson2D;
-import de.linearbits.newtonraphson.Vector2D;
 import org.apache.commons.math3.analysis.UnivariateFunction;
 import org.apache.commons.math3.analysis.solvers.BrentSolver;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.transaction.annotation.Transactional;
 import utils.ObjFunction;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 

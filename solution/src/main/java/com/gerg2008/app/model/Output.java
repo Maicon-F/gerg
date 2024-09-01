@@ -1,15 +1,25 @@
 package com.gerg2008.app.model;
 
 
+import com.gerg2008.app.controller.Derivative;
+import customizedVaadinComponents.CustomNotification;
 import lombok.Getter;
 import lombok.Setter;
+import utils.ObjFunction;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
+import java.util.ArrayList;
+import java.util.List;
+
+import static com.gerg2008.app.Constants.R;
 
 @Getter
 @Setter
 public class Output {
+    private List<Component> components;
+    private double temperature;
+    private double pressure;
+    private double liquidGuess;
+    private double vaporGuess;
     private double z;
     private double cv;
     private double cp;
@@ -18,10 +28,10 @@ public class Output {
     private double kT;
     private double u;
     private double muJT;
-    private String type;
+    private Type type;
 
 
-    public Output(double z, double cv, double cp, double alpha, double rho, double kT, double u, double muJT, String type) {
+    public Output(double z, double cv, double cp, double alpha, double rho, double kT, double u, double muJT, Type type) {
     this.z = z;
     this.cv = cv;
     this.cp = cp;
@@ -33,4 +43,5 @@ public class Output {
     this.type = type;
 
     }
+
 }
