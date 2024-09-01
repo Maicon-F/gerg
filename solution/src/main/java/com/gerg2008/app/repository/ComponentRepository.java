@@ -4,6 +4,9 @@ import com.gerg2008.app.model.Component;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+/**
+ * @Autho Maicon Fernandes
+ */
 
 @Repository
 public interface ComponentRepository extends CrudRepository<Component, String> {

@@ -14,7 +14,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
- * Class holds critical parameters, molar mass and all possible binary combinations
+ * holds critical parameters, molar mass and all possible binary combinations
  * @author Maicon Fernandes
  */
 

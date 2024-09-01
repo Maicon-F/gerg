@@ -33,6 +33,7 @@ import java.util.stream.StreamSupport;
 
 /**
  * @author Maicon Fernandes
+ * view contains the gui to gerg
  */
 
 

@@ -6,7 +6,7 @@ import lombok.Setter;
 
 
 /**
- * Class holds Helmholtz residual binary parameters
+ * holds Helmholtz residual binary parameters
  * @author Maicon Fernandes
  */
 

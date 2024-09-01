@@ -7,7 +7,7 @@ import lombok.Setter;
 
 
 /**
- * Class holds Helmholtz ideal pure parameters
+ * holds Helmholtz ideal pure parameters
  * @author Maicon Fernandes
  */
 

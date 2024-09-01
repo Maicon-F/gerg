@@ -23,8 +23,7 @@ public class OutputGrid extends VerticalLayout {
         outputGrid.addThemeVariants(GridVariant.LUMO_ROW_STRIPES);
         outputGrid.addThemeVariants(GridVariant.LUMO_COLUMN_BORDERS);
 
-        H2 title = new H2("Physical Chemistry Properties Output");
-
+        H2 title = new H2("Physical-Chemical Properties Output");
 
         add(title, outputGrid);
 

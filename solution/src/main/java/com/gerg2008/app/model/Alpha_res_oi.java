@@ -6,7 +6,7 @@ import lombok.Setter;
 
 
 /**
- * Class holds Helmholtz residual pure parameters
+ * holds Helmholtz residual pure parameters
  * @author Maicon Fernandes
  */
 

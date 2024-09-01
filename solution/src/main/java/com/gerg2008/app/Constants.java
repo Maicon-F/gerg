@@ -1,5 +1,10 @@
 package com.gerg2008.app;
 
+/**
+ * @author Maicon Fernandes
+ * holds physical-chemical constants
+ *
+ */
 public class Constants {
 
     public static final double Rstar = 8.314510;;

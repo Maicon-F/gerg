@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Class holds Helmholtz all binary reduced variables
+ * holds Helmholtz all binary reduced variables
  * @author Maicon Fernandes
  */
 

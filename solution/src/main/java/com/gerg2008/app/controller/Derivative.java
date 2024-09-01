@@ -10,9 +10,16 @@ import static com.gerg2008.app.Constants.R;
 
 /**
  * @author Maicon Fernandes
+ * handles derivative and physical-chemical properties calculation
  */
 public class Derivative {
 
+
+    /**
+     * @author Maicon Fernandes
+     * compute physical-chemical properties
+     * see Finite difference in several variables em https://en.wikipedia.org/wiki/Finite_difference
+     */
     public Output calculate(double rho, double temperature, List<Component> list, Type type) throws Exception {
         double tol = 0.0001;
         double ump, umm;
@@ -32,8 +39,6 @@ public class Derivative {
         amp = new HelmholtzCalculator(rho/umm, temperature*ump, list).aReal();
 
 
-
-//see Finite difference in several variables em https://en.wikipedia.org/wiki/Finite_difference
         double tol2 = Math.pow(tol,2);
         z = - (ap0 - am0) / (2 * tol * R * temperature);
         System.out.println("Z: "+ z);
@@ -49,6 +54,11 @@ public class Derivative {
         return output;
     }
 
+    /**
+     * @author Maicon Fernandes
+     * compute internal energy
+     *
+     */
     private double calculateU(double rho, double cp, double cv, double kT,List<Component> list) throws Exception {
         double u = 0.0, xi, mm;
         for(Component c : list) {

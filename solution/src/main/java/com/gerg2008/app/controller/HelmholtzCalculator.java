@@ -10,6 +10,7 @@ import static com.gerg2008.app.Constants.*;
 
 /**
  * @author Maicon Fernandes
+ * contains all procedures to calculate the Helmhotlz energy for real mixtures
  */
 public class HelmholtzCalculator {
 
@@ -26,7 +27,9 @@ public class HelmholtzCalculator {
         calculateReducedVariables();
     }
 
-
+    /**
+     * calculates ideal Helmhotlz for pure substances
+     */
     public double calculateAlphaIdeal_oi(Component c){
         double t = c.getT_ci()/temperature;
         double a, rhoc = c.getRho_ci();
@@ -63,7 +66,9 @@ public class HelmholtzCalculator {
     }
 
 
-
+    /**
+     * calculates reduced variables
+     */
     //reducedVars
     public void calculateReducedVariables(){
         List<Component> list = this.components;
@@ -108,7 +113,9 @@ public class HelmholtzCalculator {
         this.redTemperature = (tRes1 + tRes2)/temperature;
     }
 
-
+    /**
+     * residual Helmhotlz for pure substances
+     */
     public double calculateAlphaResoi(Component c) throws Exception {
      int kPOL = calculateKexp(c)[0];
      int kEXP = calculateKexp(c)[1];
@@ -141,14 +148,16 @@ public class HelmholtzCalculator {
                 break;
             case 24:
                 break;
-            default: throw new Exception("Wrong number of parameters");
+            default: throw new Exception("Wrong number of parameters. Check Kexp for component" + c.getName());
         }
 
        return new int[]{kPOL, kEXP};
     }
 
 
-    //residual binary
+    /**
+     * residual Helmhotlz with binary function
+     */
     public double calculateAlphaoResij(Component c1, Component c2) throws Exception {
         BiCombination bi = c1.getBinaryCombination(c2);
 
@@ -173,8 +182,9 @@ public class HelmholtzCalculator {
         return sum1 + sum2;
     }
 
-    //Mix ideal
-
+    /**
+     * ideal Helmhotlz
+     */
     public double mixAIdeal(){
         double res = 0.0, xi = 0.0;
         for(Component c: components){
@@ -185,8 +195,9 @@ public class HelmholtzCalculator {
         return res;
     }
 
-    //Mix Residual
-    //residual binary
+    /**
+     * residual Helmhotlz for the mixture
+     */
     public double mixResidual() throws Exception {
         double sum1 = 0.0, sum2 = 0.0;
 
@@ -210,6 +221,9 @@ public class HelmholtzCalculator {
         return sum1 + sum2;
     }
 
+    /**
+     * real Helmhotlz for mixtures
+     */
     public double aReal() throws Exception {
         return (mixAIdeal() + mixResidual())*R*temperature;
     }
