@@ -1,6 +1,7 @@
 package com.gerg2008.app.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,7 +21,9 @@ public class Alpha_res_ij {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    @NotNull
     private int k;
+
     private double n_ijk;
     private double d_ijk;
     private double t_ijk;

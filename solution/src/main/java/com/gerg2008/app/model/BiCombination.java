@@ -1,6 +1,7 @@
 package com.gerg2008.app.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ import java.util.List;
 public class BiCombination {
 
     @Id
+    @NotNull
     private String name;
     private double f_ij = 0;
 

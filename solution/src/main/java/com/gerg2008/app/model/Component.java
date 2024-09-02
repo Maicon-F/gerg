@@ -3,6 +3,7 @@ package com.gerg2008.app.model;
 
 import customizedVaadinComponents.CustomNotification;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -25,19 +26,30 @@ import java.util.stream.Collectors;
 @Entity
 public class Component {
     @Id
+    @NotNull
     private String name;
+
+    @NotNull
     private String formula;
 
     @Transient
     private double composition = 1.0;
+
+    @NotNull
     private double rho_ci;
+
+    @NotNull
     private double t_ci;
+
+    @NotNull
     private double mm;
 
+    @NotNull
     @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
     @JoinColumn(name="FK_COMPONENT")
     private List<Alpha_Ideal_oi> aIdeal;
 
+    @NotNull
     @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
     @JoinColumn(name="FK_COMPONENT")
     private List<Alpha_res_oi> aRes;

@@ -1,6 +1,7 @@
 package com.gerg2008.app.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,6 +18,7 @@ import lombok.Setter;
 public class ReducedMixVariables {
 
     @Id
+    @NotNull
     private String name;
 
     private double betaVij;
