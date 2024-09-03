@@ -56,7 +56,7 @@ public class Component {
 
     @ManyToMany( cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
-            name = "component-bi",
+            name = "componentbi",
             joinColumns = @JoinColumn(name = "component_id"),
             inverseJoinColumns = @JoinColumn(name = "combination_id")
     )

@@ -4,8 +4,6 @@ import com.gerg2008.app.controller.HelmholtzCalculator;
 import com.gerg2008.app.factory.ComponentFactory;
 import com.gerg2008.app.model.Component;
 import com.gerg2008.app.service.impl.ComponentServiceImpl;
-import org.apache.commons.math3.analysis.UnivariateFunction;
-import org.apache.commons.math3.analysis.solvers.BrentSolver;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
