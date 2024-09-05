@@ -11,10 +11,11 @@ This project is an educational (and only educational) implementation of the GERG
 
 <h2>How to use it</h2>
 You need to have JDK 22 and Postgres database to run it without further ado. However, other databases can be used, as long as it is a relational database and the right modifications on the application.properties are done. I have provided a sql txt file in order to populate carbon dioxide and pentane parameters, other substances must be populated manually for now. Before running the sql, load the classes using JPA|Hibernate manager by running the app, otherwise a error message should be expected. 
-
-I have also created a executable version of the software in order to provide it in the easiest way possible. Just download it from this 
+<hr>
+<hr>
+I have also created a executable version of the software in order to provide it in the easiest way possible. No previous configuration, database or any other type of installation is necessary. Just download it from this 
 <a href="https://drive.google.com/file/d/1w2KcSEiZ0rWgA3vpYFkdhKfjb3Av-E_D/view?usp=drive_link">link</a> 
-Then, click on "Run Gerg", allow it to run, and a web page will open on localhost:8080.
+.Then, click on "Run Gerg", allow it to run, and a web page will open on localhost:8080.
 
 
 <h2>Tools</h2>
