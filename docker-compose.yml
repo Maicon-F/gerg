@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  gerg-app:
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/gergdb
+      SPRING_DATASOURCE_USERNAME: gerg
+      SPRING_DATASOURCE_PASSWORD: gergpass
+    networks:
+      - gerg-network
+
+  db:
+    image: postgres:16
+    restart: always
+    environment:
+      POSTGRES_DB: gergdb
+      POSTGRES_USER: gerg
+      POSTGRES_PASSWORD: gergpass
+    ports:
+      - "5432:5432"       # Expose DB port to host for external connections
+    volumes:
+      - pgdata:/var/lib/postgresql/data  # Persist DB data
+    networks:
+      - gerg-network
+
+volumes:
+  pgdata:
+
+networks:
+  gerg-network:
+
