@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gerg-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: gerg-app
+  template:
+    metadata:
+      labels:
+        app: gerg-app
+    spec:
+      containers:
+        - name: gerg-app
+          image: gerg-app:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:postgresql://gerg-db-service:5432/gergdb
+            - name: SPRING_DATASOURCE_USERNAME
+              value: gerg
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: gergpass
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gerg-db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gerg-db
+  template:
+    metadata:
+      labels:
+        app: gerg-db
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:16
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_DB
+              value: gergdb
+            - name: POSTGRES_USER
+              value: gerg
+            - name: POSTGRES_PASSWORD
+              value: gergpass
+
