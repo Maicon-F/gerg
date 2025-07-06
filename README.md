@@ -1,7 +1,7 @@
 # GERG 2008 Java Implementation
 
 ## Overview
-This project is an educational (and only educational) implementation of the GERG 2008 Equation of State (EOS), originally developed by [O. Kunz and W. Wagner ](https://pubs.acs.org/doi/10.1021/je300655b). Although primarily an educational tool, it applies advanced chemical engineering concepts to real-world scenarios using Java. The goal is to improve my Java skills while providing a useful tool for the community.
+This project is an implementation of the GERG 2008 Equation of State (EOS). It is originally described and parametrized in the article by [O. Kunz and W. Wagner ](https://pubs.acs.org/doi/10.1021/je300655b). Although primarily an educational tool, it applies advanced chemical engineering concepts to real-world scenarios using Java, providing a reliable way to obtain physical-chemical properties used in industrial projects and activities.
 <br>
 <br>
 <h2><a>How it looks like</h2>
@@ -10,7 +10,11 @@ This project is an educational (and only educational) implementation of the GERG
 <a href="https://www.youtube.com/watch?v=KARdi4OknF0">✅Check an example!✅</a> 
 <br>
 <h2>How to use it</h2>
-You need Docker and JDK 22 to compile the application and create its image. Everything else will be handled by docker-compose, from creating the database container and the connection to the applicaiton container.  The application will run a run a script during initialization in order to populate data relative to pentane and CO2, in case you actually need the full catalog with other substances and mixtures, you may contact me.
+If you want to make any changes on the application, JDK 22 will be required to compile, and Docker create its image and run the container with all functionalities needed to run Gerg 2008. Everything is handled by docker-compose, from creating the database container and the connection to the applicaiton container.  
+
+In case you only need the current docker image, it is available on: https://hub.docker.com/repository/docker/maiconf/gerg2008/general
+
+After initializing the application, it will execute a script in order to populate Postgress with data relative to pentane and CO2, in case you actually need the full catalog with other substances and mixtures, you may contact me.
 
 **sudo ./restart-docker.sh**
 <hr>
@@ -18,10 +22,12 @@ You need Docker and JDK 22 to compile the application and create its image. Ever
 <br>
 
 <h2>Tools</h2>
+- Docker
 - JDK 22
 - Springboot
 - Vaadin
 - Postgress | H2
+
 
 
 
