@@ -10,7 +10,7 @@ This project is an implementation of the GERG 2008 Equation of State (EOS). It i
 <a href="https://www.youtube.com/watch?v=KARdi4OknF0">✅Check an example!✅</a> 
 <br>
 <h2>How to use it</h2>
-If you want to make any changes on the application, JDK 22 will be required to compile, and Docker create its image and run the container with all functionalities needed to run Gerg 2008. Everything is handled by docker-compose, from creating the database container and the connection to the applicaiton container.  
+If you want to make any changes on the application, JDK 22 will be required to compile it, and Docker creates the image and runs the container with all functionalities needed to run Gerg 2008. Everything is handled by docker-compose, from creating the database container and the connection to the applicaiton container.  
 
 In case you only need the current docker image, it is available on: https://hub.docker.com/repository/docker/maiconf/gerg2008/general
 
