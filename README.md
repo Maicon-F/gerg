@@ -11,10 +11,14 @@ This project is an implementation of the GERG 2008 Equation of State (EOS). It i
 <br>
 <h2>How to use it</h2>
 If you want to make any changes on the application, JDK 22 will be required to compile it, and Docker creates the image and runs the container with all functionalities needed to run Gerg 2008. Everything is handled by docker-compose, from creating the database container and the connection to the applicaiton container.  
-
+<br>
 In case you only need the current docker image, it is available on: https://hub.docker.com/repository/docker/maiconf/gerg2008/general
-
+<br>
 After initializing the application, it will execute a script in order to populate Postgress with data relative to pentane and CO2, in case you actually need the full catalog with other substances and mixtures, you may contact me.
+<br>
+<br>
+<br>
+After installing JDK22 and Docker on your local environment, all you need to do is run the followig command:
 
 **sudo ./restart-docker.sh**
 <hr>
