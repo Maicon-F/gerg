@@ -18,6 +18,8 @@ If you want to make any changes on the application, JDK 22 will be required to c
 <br>
 
 
+
+
 In case you only need the current docker image, it is available on: https://hub.docker.com/repository/docker/maiconf/gerg2008/general
 <br>
 
@@ -26,7 +28,11 @@ After initializing the application, it will execute a script in order to populat
 <br>
 
 
-After installing JDK22 and Docker on your local environment, all you need to do is run the followig command:
+
+
+
+
+After installing JDK22 and Docker on your local environment, all you need to do is to run the followig command:
 
 **sudo ./restart-docker.sh**
 <hr>
